@@ -4,7 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './app/screens/Login';
 import Details from './app/screens/Details';
-import List from './app/screens/List';
+import Main from './app/screens/Main';
+import Profile from './app/screens/profile';
 
 import MapView from './app/screens/MapComponent';
 
@@ -20,9 +21,10 @@ const InsideStack = createNativeStackNavigator();
 function InsideLayout() {
   return (
     <InsideStack.Navigator>
-      <InsideStack.Screen name="my todos" component={List} />
+      <InsideStack.Screen name="main" component={Main} />
       <InsideStack.Screen name="details" component={Details} />
-      <InsideStack.Screen name="mapView" component={MapView}/>
+      <InsideStack.Screen name="mapView" component={MapView} />
+      <InsideStack.Screen name="profile" component={Profile} />
     </InsideStack.Navigator>
   )
 }
