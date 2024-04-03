@@ -68,7 +68,9 @@ const MapComponent = () => {
     <>
       {cameraOpen ? (
         <>
+
         <CameraView props={{cameraOpen, setCameraOpen}}/>
+
         </>
       ) : (
         <>

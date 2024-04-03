@@ -70,7 +70,11 @@ const ProfileScreen = ({ navigation }) => {
                         <View style={{ margin: 40, padding: 20, justifyContent: 'center' }}>
                             <TouchableOpacity
                                 style={styles.profileButtons}
+<<<<<<< HEAD
                                 onPress={() => navigation.navigate('progress')}
+=======
+                                onPress={() => navigation.navigate('details')}
+>>>>>>> 7edde0c5a2c6f406883d70cf68d7f285906b0f89
                             >
                                 <Image
                                     resizeMode="conver"
