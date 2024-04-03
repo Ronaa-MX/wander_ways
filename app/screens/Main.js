@@ -41,7 +41,7 @@ const Main = ({ navigation }) => {
       <View style={{ padding: 20, justifyContent: "center", alignContent: "center", gap: 16 }}>
         <Button onPress={() => navigation.navigate('details')} title="Genereate Routes" />
         <Button onPress={() => navigation.navigate('details')} title="Plan A New Journey" />
-        <Button onPress={() => navigation.navigate('details')} title="View Progress" />
+        <Button onPress={() => navigation.navigate('progress')} title="View Progress" />
       </View>
 
     </View >

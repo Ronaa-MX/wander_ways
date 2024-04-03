@@ -1,5 +1,8 @@
 import { Camera, CameraType } from "expo-camera";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as Location from "expo-location";
+import { FIREBASE_AUTH } from "../../FirebaseConfig";
+
 import {
   Button,
   StyleSheet,
@@ -9,9 +12,33 @@ import {
   Image,
 } from "react-native";
 
-export default function CameraView() {
+import {saveLocation} from './Users'
+
+export default function CameraView({props}) {
   const [type, setType] = useState(CameraType.back);
   const [photoUri, setPhotoUri] = useState(null);
+  const [locationName, setLocationName] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        alert("Permission to access location was denied");
+        return;
+      }
+
+  
+    })();
+  }, []);
+
+  const getReverseGeocode = async (coords) => {
+    let reverseGeocode = await Location.reverseGeocodeAsync(coords);
+    if (reverseGeocode.length > 0) {
+      let { city, street, region, country } = reverseGeocode[0];
+      setLocationName(`${street}, ${city}, ${region}, ${country}`);
+      saveLocation(city,country,region,street, FIREBASE_AUTH.currentUser.uid);
+    }
+  };
 
   function toggleCameraType() {
     setType((current) =>
@@ -24,10 +51,16 @@ export default function CameraView() {
       let photo = await cameraRef.takePictureAsync();
       console.log("Photo", photo);
       setPhotoUri(photo.uri);
+      let location = await Location.getCurrentPositionAsync({});
+      getReverseGeocode(location.coords);
+      
+ 
     }
   };
   const [cameraRef, setCameraRef] = useState(null);
   return (
+    <>
+    
     <View style={styles.container}>
       {photoUri ? (
         <>
@@ -35,22 +68,19 @@ export default function CameraView() {
             source={{ uri: photoUri }}
             style={{ ...StyleSheet.absoluteFillObject }}
           />
+          
+          <View style={styles.buttonContainer}>
+
           <TouchableOpacity
-            style={styles.button}
-            onPress={() => setPhotoUri(null)}
-          >
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "bold",
-                color: "white",
-                top: "90%",
-                right: "5%",
-              }}
+              style={styles.flipButton}
+              onPress={() => {setPhotoUri(null); setLocationName(null)}}
             >
-              Take Another Photo
-            </Text>
-          </TouchableOpacity>
+              <Image
+                source={require("../assets/icons/redo.png")}
+                style={styles.photoIcon}
+              />
+            </TouchableOpacity>
+         </View>
         </>
       ) : (
         <Camera
@@ -58,7 +88,9 @@ export default function CameraView() {
           type={type}
           ref={(ref) => setCameraRef(ref)}
         >
+         
           <View style={styles.buttonContainer}>
+            
             <TouchableOpacity
               style={styles.flipButton}
               onPress={toggleCameraType}
@@ -69,15 +101,29 @@ export default function CameraView() {
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.photoButton} onPress={takePicture}>
-            <Image
+              <Image
                 source={require("../assets/icons/camera.png")}
                 style={styles.photoIcon}
               />
             </TouchableOpacity>
+            <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => {props.setCameraOpen(!props.cameraOpen)}}
+          >
+            
+            <Image
+                source={require("../assets/icons/back.png")}
+                style={styles.photoIcon}
+              />
+           
+          </TouchableOpacity>
           </View>
         </Camera>
       )}
+      
     </View>
+    {locationName ? <Text style={{color: "blue"}}>New visit to {locationName} saved</Text> : <></>}
+    </>
   );
 }
 
@@ -101,7 +147,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    
     fontSize: 24,
     fontWeight: "",
     color: "white",
@@ -118,7 +163,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     left: 0,
-   
   },
   flipButton: {
     position: "absolute",
@@ -132,9 +176,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     right: 0,
+  },
+  backButton: {
+    position: "absolute",
+    top: 0,
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 50,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
     
   },
-  
   photoIcon: {
     width: 40,
     height: 40,
