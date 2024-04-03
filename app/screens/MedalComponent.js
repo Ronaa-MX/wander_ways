@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     medalDescription: {
-        fontSize: 14,
+        fontSize: 12,
         marginTop: 4,
     },
 });
