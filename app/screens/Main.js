@@ -7,13 +7,13 @@ import MapComponent from './MapComponent'
 const Main = ({ navigation }) => {
   return (
     <View>
-     
+
       <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 40 }}>
         <View style={{ padding: 10, marginEnd: 100, flexDirection: "row", alignItems: "center", flex: 1 }}>
           <Image
             style={{ width: 50, height: 50 }}
             resizeMode="contain"
-            source={{ uri: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ac03a17e-589d-4ac1-952a-4185d1070994/dfkshd7-44b072d7-a5b3-4b99-9eb9-41bb5ac7c565.png/v1/fill/w_1280,h_2255/gotou_hitori__bocchi__render_by_minhchauk1k_dfkshd7-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjI1NSIsInBhdGgiOiJcL2ZcL2FjMDNhMTdlLTU4OWQtNGFjMS05NTJhLTQxODVkMTA3MDk5NFwvZGZrc2hkNy00NGIwNzJkNy1hNWIzLTRiOTktOWViOS00MWJiNWFjN2M1NjUucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.IQD991lYBnumhBN0Z0HSpBkULmYcsEMg7Tf3_Fkq0h8' }} />
+            source={require("../assets/icons/logo.png")} />
           <Text style={{ fontSize: 12 }}> WanderWays </Text>
         </View>
         <View style={{ padding: 10, margin: 10, flexDirection: "row", alignItems: "center" }}>
@@ -29,7 +29,7 @@ const Main = ({ navigation }) => {
           >
             <Image
               resizeMode="conver"
-              source={{ uri: "https://safebooru.org//samples/4423/sample_ba5bca0f0b1730d8ce32192456787167ef1ecb0a.jpg?4613387" }}
+              source={require("../assets/icons/profile.png")}
               style={styles.profileIcon}
             />
           </TouchableOpacity>
