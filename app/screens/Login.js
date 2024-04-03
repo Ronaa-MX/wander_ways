@@ -58,12 +58,12 @@ const Login = () => {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <View style={{ marginBottom: 10 }}>
+      <View>
         <Image
-          style={{ width: 200, height: 200 }}
+          style={{ width: 250, height: 250 }}
           resizeMode="contain"
-          source={{ uri: 'https://upload-os-bbs.hoyolab.com/upload/2022/06/12/18491187/1759943324266a43eadd8b9d174d721d_4194543142013398674.jpg?x-oss-process=image%2Fresize%2Cs_1000%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_80' }} />
-        <Text style={{ fontSize: 32 }}> WanderWays </Text>
+          source={require("../assets/icons/logo.png")} />
+
       </View>
 
       <View style={{ padding: 10, marginBottom: 10 }}>

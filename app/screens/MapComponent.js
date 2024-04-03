@@ -53,13 +53,13 @@ const MapComponent = () => {
 
   const openCamera = async () => {
     let { status } = await Camera.requestCameraPermissionsAsync();
-      if (status !== "granted") {
-        setStatus("Permission to access location was denied");
-        return;
-      } else {
-        console.log("Camera Access granted!!");
-        setStatus(status);
-      }
+    if (status !== "granted") {
+      setStatus("Permission to access location was denied");
+      return;
+    } else {
+      console.log("Camera Access granted!!");
+      setStatus(status);
+    }
   };
 
   const [cameraOpen, setCameraOpen] = useState(false);
@@ -68,26 +68,28 @@ const MapComponent = () => {
     <>
       {cameraOpen ? (
         <>
+
         <CameraView props={{cameraOpen, setCameraOpen}}/>
+
         </>
       ) : (
         <>
-        <View style={styles.container}>
-          <MapView
-            showsUserLocation
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            initialRegion={mapRegion}
-          />
-          <TouchableOpacity
-            style={styles.photoButton}
-            onPress={() => {setCameraOpen(!cameraOpen); openCamera}}
-          >
-            <Image
-              source={require("../assets/icons/camera-265.png")}
-              style={styles.photoIcon}
+          <View style={styles.container}>
+            <MapView
+              showsUserLocation
+              provider={PROVIDER_GOOGLE}
+              style={styles.map}
+              initialRegion={mapRegion}
             />
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.photoButton}
+              onPress={() => { setCameraOpen(!cameraOpen); openCamera }}
+            >
+              <Image
+                source={require("../assets/icons/camera-265.png")}
+                style={styles.photoIcon}
+              />
+            </TouchableOpacity>
           </View>
         </>
       )}
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: "flex-end",
     alignItems: "center",
-    
+
   },
   map: {
     ...StyleSheet.absoluteFillObject,
