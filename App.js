@@ -5,9 +5,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './app/screens/Login';
 import Details from './app/screens/Details';
 import List from './app/screens/List';
+
+import MapView from './app/screens/Map';
+
 import { useEffect,  useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './FirebaseConfig';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +22,7 @@ function InsideLayout() {
     <InsideStack.Navigator>
       <InsideStack.Screen name="my todos" component={List}/>
       <InsideStack.Screen name="details" component={Details}/>
+      <InsideStack.Screen name="mapView" component={MapView}/>
     </InsideStack.Navigator>
   )
 }
