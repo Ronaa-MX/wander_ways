@@ -7,7 +7,7 @@ import MapComponent from './MapComponent'
 const Main = ({ navigation }) => {
   return (
     <View>
-      {/* // This is the header of the app */}
+     
       <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 40 }}>
         <View style={{ padding: 10, marginEnd: 100, flexDirection: "row", alignItems: "center", flex: 1 }}>
           <Image
