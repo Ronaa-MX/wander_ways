@@ -12,6 +12,7 @@ import MapView from './app/screens/MapComponent';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './FirebaseConfig';
+import Progress from './app/screens/Progress';
 
 
 
@@ -25,6 +26,7 @@ function InsideLayout() {
       <InsideStack.Screen name="details" component={Details} />
       <InsideStack.Screen name="mapView" component={MapView} />
       <InsideStack.Screen name="profile" component={Profile} />
+      <InsideStack.Screen name="progress" component={Progress} />
     </InsideStack.Navigator>
   )
 }
