@@ -6,7 +6,7 @@ import Login from './app/screens/Login';
 import Details from './app/screens/Details';
 import List from './app/screens/List';
 
-import MapView from './app/screens/Map';
+import MapView from './app/screens/MapComponent';
 
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';

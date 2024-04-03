@@ -13,7 +13,7 @@ import * as Location from "expo-location";
 import CameraView from "./CameraView";
 import { Camera } from "expo-camera";
 
-const Map = () => {
+const MapComponent = () => {
   const [mapRegion, setMapRegion] = useState({
     latitude: 19.51,
     longitude: -99.16,
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Map;
+export default MapComponent;

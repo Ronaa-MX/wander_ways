@@ -2,6 +2,7 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { FIREBASE_AUTH } from '../../FirebaseConfig'
 import { Button } from "react-native";
+import MapComponent from './MapComponent'
 
 const List = ({ navigation }) => {
   return (
@@ -21,11 +22,8 @@ const List = ({ navigation }) => {
 
       <View style={{ padding: 10, justifyContent: "center", alignContent: "center", alignItems: "center" }}>
         <View style={{ margin: 20, padding: 20, width: 300, height: 400, borderColor: 'black', borderWidth: 1, borderRadius: 10 }}>
-          <Image
-            style={{ width: 300, height: 400 }}
-            resizeMode="contain"
-            source={{ uri: 'https://i.redd.it/bocchi-on-the-rocks-v0-5pgzqswie05a1.png?width=1150&format=png&auto=webp&s=56c89d44a85386a6425e4464d0b5b71abaa80672' }} />
-        </View>
+          <MapComponent/>
+          </View>
       </View>
       <View style={{ padding: 20, justifyContent: "center", alignContent: "center", gap: 16 }}>
         <Button onPress={() => navigation.navigate('details')} title="Genereate Routes" />
