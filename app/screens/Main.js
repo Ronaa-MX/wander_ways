@@ -1,14 +1,15 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { FIREBASE_AUTH } from '../../FirebaseConfig'
 import { Button } from "react-native";
 import MapComponent from './MapComponent'
 
-const List = ({ navigation }) => {
+const Main = ({ navigation }) => {
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={{ padding: 10, margin: 10, marginEnd: 100, flexDirection: "row", alignItems: "center", flex: 1 }}>
+    <View>
+      {/* // This is the header of the app */}
+      <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 40 }}>
+        <View style={{ padding: 10, marginEnd: 100, flexDirection: "row", alignItems: "center", flex: 1 }}>
           <Image
             style={{ width: 50, height: 50 }}
             resizeMode="contain"
@@ -21,9 +22,21 @@ const List = ({ navigation }) => {
       </View>
 
       <View style={{ padding: 10, justifyContent: "center", alignContent: "center", alignItems: "center" }}>
-        <View style={{ margin: 20, padding: 20, width: 300, height: 400, borderColor: 'black', borderWidth: 1, borderRadius: 10 }}>
-          <MapComponent/>
-          </View>
+        <View style={{ margin: -10, justifyContent: "center", alignContent: "center", alignItems: "center" }}>
+          <TouchableOpacity
+            style={styles.profileButton}
+            onPress={() => navigation.navigate('profile')}
+          >
+            <Image
+              resizeMode="conver"
+              source={{ uri: "https://safebooru.org//samples/4423/sample_ba5bca0f0b1730d8ce32192456787167ef1ecb0a.jpg?4613387" }}
+              style={styles.profileIcon}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ margin: 15, padding: 20, width: 300, height: 400 }}>
+          <MapComponent />
+        </View>
       </View>
       <View style={{ padding: 20, justifyContent: "center", alignContent: "center", gap: 16 }}>
         <Button onPress={() => navigation.navigate('details')} title="Genereate Routes" />
@@ -35,4 +48,31 @@ const List = ({ navigation }) => {
   );
 };
 
-export default List;
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex .space-around",
+    alignItems: "center",
+
+  },
+  profileButton: {
+    position: "absolute",
+    bottom: -20,
+    backgroundColor: "white",
+    padding: 10,
+    borderRadius: 50,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  profileIcon: {
+    width: 69,
+    height: 69,
+    borderRadius: 40,
+    overflow: "hidden",
+  },
+});
+
+export default Main;
